@@ -11,9 +11,10 @@ const jwt = require( 'jsonwebtoken' );
 // ================================================
 
 app.post( '/login', ( req, res ) => {
-    const body = req.body, emailValid = false;
+    const body = req.body;
+    let emailValid = false;
 
-    let len = users.length
+    let len = users.length;
     for( let i = 0 ; i < len ; i++ ){
         if( users[ i ].email === body.email ){
             emailValid = true;

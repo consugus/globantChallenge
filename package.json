@@ -1,0 +1,11 @@
+{
+  "name": "globantchallenge",
+  "version": "1.0.0",
+  "description": "Challenge on NodeJS Sequelize ExternalAPIRequest relationalDB Authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo Rios",
+  "license": "ISC"
+}

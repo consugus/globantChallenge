@@ -4,9 +4,12 @@ const express = require( 'express' );
 const path = require( 'path' );
 const bodyParser = require( 'body-parser' );
 const app = express();
+const Sequelize = require( 'sequelize' );
 
 app.use( bodyParser.urlencoded( { extended: false } ) );
 app.use( bodyParser.json() );
+
+
 
 
 // ================================================
@@ -14,9 +17,28 @@ app.use( bodyParser.json() );
 // ================================================
 
 app.use( require( './routes/routes' ) );
+const sequelize = new Sequelize( process.env.DATABASE, process.env.MYSQL_USERNAME, process.env.MYSQL_PASSWORD, {
+    host: 'localhost',
+    user: 'root',
+    port: 3306,
+    dialect: 'mysql'
+});
+
+sequelize.authenticate()
+    .then( () => {
+        console.log( 'Connection has been established succesfully'.brightGreen );
+    })
+    .catch( err => {
+        console.log( 'Unable to connect to database'.brightREd, err );
+    })
+
+
+
+
+
 
 
 
 app.listen(process.env.PORT, () => {
-    console.log( `Listening at ${ process.env.PORT }`.cyan );
+    console.log( `Listening at ${ process.env.PORT }`.brightCyan );
 });

@@ -1,37 +1,33 @@
 const axios = require( 'axios' );
 const _ = require( 'underscore' );
-const sequelize = require( 'sequelize' );
-const Item = require( '../models/item-model' );
+const db = require( '../config/database' );
+const Item = require( '../models/Item-model' );
 
 
-createItem = ( item ) => {
-    return "Llegó al items-controller.js/createItem";
+createItem = async ( data ) => {
+    return await Item.create( data );
 }
 
 
-getAllItems = ( ) => {
-
-    Item.findAll().then( items => {
-            console.log( "Items: ", Json, stringify(items) );
-        }
-    )
-
-    return "Llegó al items-controller.js/getAllItems";
+ getAllItems = async ( ) => {
+    return await Item.findAll();
 }
 
 
-getItemById = ( id ) => {
-    return "Llegó al items-controller.js/getItemById";
+getItemById = async ( id ) => {
+    return await Item.findByPk( id );
 }
 
 
-updateItem = ( id ) => {
-    return "Llegó al items-controller.js/updateItem";
+updateItem = async ( id, data ) => {
+    return await Item.update( { value: data.value }, { where: { idItem: id } } );;
 }
 
 
-deleteItem = ( id ) => {
-    return "Llegó al items-controller.js/deleteItem";
+deleteItem = async ( id ) => {
+    return await Item.destroy({
+        where: { idItem: id }
+    });
 }
 
 
@@ -42,4 +38,4 @@ module.exports = {
     getItemById,
     updateItem,
     deleteItem
-};
+}

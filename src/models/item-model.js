@@ -1,11 +1,15 @@
 const Sequelize = require( 'sequelize' );
-const sequelize = new Sequelize();
+const db = require( '../config/database' );
 
 
-const Item = sequelize.define( 'user', {
-    idItems: { type: Sequelize.SMALLINT, primaryKey: true },
+const Item = db.define( 'item', {
+    idItem: { type: Sequelize.SMALLINT, primaryKey: true },
     name: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
     value: { type: Sequelize.DECIMAL },
-    currency: { type: Sequelize.STRING }
+    currency: { type: Sequelize.STRING },
+    createdAt: { type:Sequelize.DATE },
+    updatedAt: { type:Sequelize.DATE }
 })
+
+module.exports = Item;

@@ -1,50 +1,72 @@
 const express = require( 'express' );
 const app = express();
+const db = require( '../config/database' );
+const Item = require( '../models/Item-model' );
 const { users } = require( '../config/config' );
 const _ = require( 'underscore' );
 const { tokenVerify } = require( '../middlewares/authentication' );
 const { getAllItems, getItemById, createItem, updateItem, deleteItem } = require( '../controllers/items-controllers' );
 
 
-
-
-// ================================================
-//                   Get items
-// ================================================
-app.get( '/items/getItems', tokenVerify, ( req, res ) => {
+// ?================================================
+// ?                  Get items
+// ?================================================
+app.get( '/items/getItems', tokenVerify, async ( req, res ) => {
     return res.status( 200 ).json({
-        ok: true,
-        message: getAllItems()
+        ok: "true",
+        resp: await getAllItems()
     });
 });
 
-app.get( '/items/getItemById/:id', tokenVerify, ( req, res ) => {
+
+// ?================================================
+// ?               Get items by Id
+// ?================================================
+app.get( '/items/getItemById/:id', tokenVerify, async ( req, res ) => {
+    const id = req.params.id
     return res.status( 200 ).json({
         ok: true,
-        message: getItemById()
+        resp: await getItemById( id )
     });
 });
 
-app.post( '/items/createItem', tokenVerify, ( req, res ) => {
+
+
+// TODO: Have to finish this
+// ?================================================
+// ?                 Create item
+// ?================================================
+app.post( '/items/createItem', tokenVerify, async ( req, res ) => {
+    const data = req.body;
     return res.status( 200 ).json({
         ok: true,
-        message: createItem()
+        resp: await createItem( data )
     });
 });
 
-app.put( '/items/updateItem/:id', tokenVerify, ( req, res ) => {
-    console.log( "llegó al updateItem".green );
+
+
+// ?================================================
+// ?                 Update items
+// ?================================================
+app.put( '/items/updateItem/:id', tokenVerify, async ( req, res ) => {
+    const id= req.params.id, data = req.body;
     return res.status( 200 ).json({
         ok: true,
-        message: updateItem()
+        resp: await updateItem( id, data )
     });
 });
 
-app.delete( '/items/deleteItem/:id', tokenVerify, ( req, res ) => {
-    console.log( "llegó al getItems".green );
+
+// ?================================================
+// ?                 Delete items
+// ?================================================
+app.delete( '/items/deleteItem/:id', tokenVerify, async ( req, res ) => {
+    const id = req.params.id;
+    await deleteItem( id );
     return res.status( 200 ).json({
         ok: true,
-        message: deleteItem()
+        resp: "Item successfully deleted"
     });
 });
 

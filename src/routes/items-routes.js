@@ -32,7 +32,6 @@ app.get( '/items/getItemById/:id', tokenVerify, async ( req, res ) => {
 
 
 
-// TODO: Have to finish this
 // ?================================================
 // ?                 Create item
 // ?================================================

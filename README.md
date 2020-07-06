@@ -11,8 +11,7 @@ Inside the ./utils folder there´s a file containing que requests configurations
 
 ![Postman](/images/postman.png)
 
-Se creará una colección con las peticiones:
-A new collection will be created with the requests
+A new collection will be created with the requests:
 
     * ITEMS
         * GET Items: returns the list of all item.

@@ -25,7 +25,7 @@ app.post( '/login', ( req, res ) => {
     if( !emailValid ){
         res.status( 400 ).json({
             ok: false,
-            message: `${ body.email } is not registered`
+            message: `${ body.email } is not a valid user email`
         });
     } else {
         if( !bcrypt.compareSync( body.password, user.password )){

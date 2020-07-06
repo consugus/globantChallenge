@@ -11,13 +11,23 @@ createItem = async ( data ) => {
 
 
  getAllItems = async ( ) => {
-    const exchangeData = await getExchangeRate();
-    let items = await Item.findAll();
-    const len = items.length;
-    for( let i = 0 ; i < len ; i++ ){
-        items[ i ].dataValues.valueEUR = await addValueInEur( items[i] );
+
+    try {
+        const exchangeData = await getExchangeRate();
+        let items = await Item.findAll();
+        const len = items.length;
+        for( let i = 0 ; i < len ; i++ ){
+            items[ i ].dataValues.valueEUR = await addValueInEur( items[ i ] );
+        }
+        return items
     }
-    return items
+    catch ( err ){
+        throw new Error ('', err)
+    };
+
+
+
+
 }
 
 

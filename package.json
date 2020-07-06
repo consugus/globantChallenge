@@ -4,7 +4,10 @@
   "description": "Challenge on NodeJS Sequelize ExternalAPIRequest relationalDB Authentication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coverage-all": "jest --coverage --watchAll"
   },
   "author": "Gustavo Rios",
   "license": "ISC",
@@ -17,5 +20,11 @@
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.0",
     "underscore": "^1.10.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^26.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "jest": "^26.1.0"
   }
 }

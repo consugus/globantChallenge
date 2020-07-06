@@ -6,7 +6,15 @@ const getExchangeRate = require( '../services/exchange-service' );
 
 
 createItem = async ( data ) => {
-    return await Item.create( data );
+
+    let item;
+
+    if( data.hasOwnProperty( 'name'  ) && data.hasOwnProperty( 'description'  ) && data.hasOwnProperty( 'value'  ) && data.hasOwnProperty( 'currency'  ) ){
+        item = await Item.create( data );
+    } else{
+        throw 'Invalid request'
+    }
+    return item;
 }
 
 

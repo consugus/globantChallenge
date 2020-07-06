@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "e45b9a24-4b6f-4777-b745-81aae4a898aa",
+		"name": "Globant Challente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Routes",
+			"item": [
+				{
+					"name": "POST - allow user to login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									"let resp = pm.response.json();\r",
+									"\r",
+									"if(!resp.errorCode){\r",
+									" let token = resp.token;\r",
+									" pm.environment.set(\"token\", token);\r",
+									"} else {\r",
+									" console.log(\"No se actualizó el token\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"consugus@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Items Routes",
+			"item": [
+				{
+					"name": "GET- gets items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"consugus@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/getItems",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"getItems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET- gets item providing its id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"consugus@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/getItemById/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"getItemById",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST -  creates an  item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"name\": \"Productito\",\r\n            \"description\": \"Desde el createItem\",\r\n            \"value\": \"1000\",\r\n            \"currency\": \"USD\"\r\n\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/createItem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"createItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT- updates an  item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": 200\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/updateItem/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"updateItem",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE- deletes an  item providing its id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ce32ea0-133b-4877-929f-35c0531af1f6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"consugus@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/items/deleteItem/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"items",
+								"deleteItem",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ExchangeRates.io Routes",
+			"item": [
+				{
+					"name": "ExchangeRates.io --> GET customized Rate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.exchangeratesapi.io/latest?base=USD&symbols=EUR",
+							"protocol": "https",
+							"host": [
+								"api",
+								"exchangeratesapi",
+								"io"
+							],
+							"path": [
+								"latest"
+							],
+							"query": [
+								{
+									"key": "base",
+									"value": "USD"
+								},
+								{
+									"key": "symbols",
+									"value": "EUR"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

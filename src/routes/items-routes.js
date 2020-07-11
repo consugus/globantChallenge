@@ -12,9 +12,9 @@ const { getAllItems, getItemById, createItem, updateItem, deleteItem } = require
 // ?                  Get items
 // ?================================================
 app.get( '/items/getItems', tokenVerify, async ( req, res ) => {
-
+    let items;
     try {
-        const items = await getAllItems()
+        items = await getAllItems()
         if( !items ){
             return res.status( 404 ).json({
                 ok: false,

@@ -26,7 +26,7 @@ const db = require( './config/database' );
 // ?================================================
 db.authenticate()
     .then( () => { console.log( 'Connection to DB has been established succesfully'.brightCyan ); })
-    .catch( err => { console.log( 'Unable to connect to database'.brightREd, err ); })
+    .catch( err => { console.log( 'Unable to connect to database'.brightRed, err ); })
 
 
 

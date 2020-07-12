@@ -1,15 +1,14 @@
 const axios = require( 'axios' );
 const _ = require( 'underscore' );
+const colors = require( 'colors' );
 const db = require( '../config/database' );
 const Item = require( '../models/Item-model' );
 const getExchangeRate = require( '../services/exchange-service' );
 
 
 createItem = async ( data ) => {
-
     let item;
-
-    if( data.hasOwnProperty( 'name'  ) && data.hasOwnProperty( 'description'  ) && data.hasOwnProperty( 'value'  ) && data.hasOwnProperty( 'currency'  ) ){
+    if( data.hasOwnProperty( 'name'  ) && data.hasOwnProperty( 'description'  ) && data.hasOwnProperty( 'sellPrice'  ) && data.hasOwnProperty( 'currency'  ) ){
         item = await Item.create( data );
     } else{
         throw 'Invalid request'
@@ -32,10 +31,6 @@ createItem = async ( data ) => {
     catch ( err ){
         throw new Error ('', err)
     };
-
-
-
-
 }
 
 
@@ -48,12 +43,12 @@ getItemById = async ( id ) => {
 addValueInEur = async ( item ) => {
     const exchangeData = await getExchangeRate();
     const inEUR = `${ ( item.value * exchangeData.rates.EUR ).toFixed(2) } (${ exchangeData.date })`;
-    return inEUR
+    return inEUR;
 }
 
 
 updateItem = async ( id, data ) => {
-    return await Item.update( { value: data.value }, { where: { idItem: id } } );;
+    return await Item.update( data , { where: { idItem: id } } );;
 }
 
 

@@ -160,29 +160,6 @@ app.delete( '/items/deleteItem/:id', tokenVerify, async ( req, res ) => {
 });
 
 
-// ?================================================
-// ?           Buy Items (increase stock)
-// ?================================================
-app.post('/items/buyItems', async ( req, res ) => {
-    const itemsToUpdate = req.body;
-    let message = "";
-
-    const len = itemsToUpdate.length;
-    for( let i = 0 ; i < len ; i++ ){
-        let id = itemsToUpdate[ i ].idItem;
-        let q = itemsToUpdate[ i ].quantity;
-        let data = { stock: null };
-        data.stock = ( await getItemById( id )).dataValues.stock + q;
-        resp = await updateItem( id,  data );
-        message += ( (resp[0] > 0 ) ? `Item ${ id } successfully updated; ` : `Item ${ id } could not be updated; ` );
-    }
-
-    return res.status( 200 ).json({
-        ok: true,
-        message
-    })
-})
-
 
 
 module.exports = app;

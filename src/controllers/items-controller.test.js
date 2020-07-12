@@ -7,55 +7,57 @@ const Item = require( '../models/Item-model' );
 
 const expect = global.expect;
 
-let items =  Item.findAll()
-    .then(
+// let items =  Item.findAll()
+//     .then(
 
-        describe( 'items', async () => {
+//         describe( 'items', async () => {
 
-            describe( 'createItem', () => {
+//             describe( 'createItem', () => {
 
-               test( 'Must add an item with props {name, description, value and currency}', () => {
-                   const data = {
-                       "name": "Producto2",
-                       "description": "Testing the implementation of method createItem",
-                       "value": "300",
-                       "currency": "USD"
-                   }
-                   const actual = items;
-                   const expected = [ data ];
-                   items = Item.create( data )
-                        .then(
+//                test( 'Must add an item with props {name, description, value and currency}', () => {
+//                    const data = {
+//                        "name": "Producto2",
+//                        "description": "Testing the implementation of method createItem",
+//                        "value": "300",
+//                        "currency": "USD"
+//                    }
+//                    const actual = items;
+//                    const expected = [ data ];
+//                    items = Item.create( data )
+//                         .then(
 
-                            expect(actual).toEqual(expected)
+//                             expect(actual).toEqual(expected)
 
-                        )
-               });
-            });
-       })
+//                         )
+//                });
+//             });
+//        })
 
-    )
+//     )
 
 describe( 'items', async () => {
 
 
-     describe( 'createItem', () => {
+    //  describe( 'createItem', () => {
 
-        test( 'Must add an item with props {name, description, value and currency}', () => {
-            const data = {
-                "name": "Producto2",
-                "description": "Testing the implementation of method createItem",
-                "value": "300",
-                "currency": "USD"
-            }
-            items = Item.create( data );
+    //     test( 'Must add an item with props {name, description, value and currency}', () => {
+    //         const data = {
+    //             "name": "Producto2",
+    //             "description": "Testing the implementation of method createItem",
+    //             "value": "300",
+    //             "currency": "USD"
+    //         }
+    //         items = Item.create( data );
 
-            const actual = items;
-            const expected = [ data ];
+    //         const actual = items;
+    //         const expected = [ data ];
 
-            expect(actual).toEqual(expected);
+    //         expect(actual).toEqual(expected);
 
-        });
+    //     });
 
-     });
+    //  });
+
+    
 
 });

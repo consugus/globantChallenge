@@ -42,7 +42,7 @@ getItemById = async ( id ) => {
 
 addValueInEur = async ( item ) => {
     const exchangeData = await getExchangeRate();
-    const inEUR = `${ ( item.value * exchangeData.rates.EUR ).toFixed(2) } (${ exchangeData.date })`;
+    const inEUR = `${ ( item.sellPrice * exchangeData.rates.EUR ).toFixed(2) } (${ exchangeData.date })`;
     return inEUR;
 }
 

@@ -7,6 +7,7 @@ const Item = db.define( 'item', {
     name: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
     sellPrice: { type: Sequelize.DECIMAL },
+    stock: { type: Sequelize.INTEGER },
     currency: { type: Sequelize.STRING },
     createdAt: { type:Sequelize.DATE },
     updatedAt: { type:Sequelize.DATE }

@@ -59,11 +59,33 @@ deleteItem = async ( id ) => {
 }
 
 
+buySell = async ( data ) => {
+    const operation = data.operation;
+    const itemsToUpdate = data.itemsToUpdate;
+    let message = "";
+
+    const len = itemsToUpdate.length;
+    for( let i = 0 ; i < len ; i++ ){
+        let id = itemsToUpdate[ i ].idItem;
+        let q = itemsToUpdate[ i ].quantity;
+        let data = { stock: null };
+        data.stock = ( await getItemById( id ) ).dataValues.stock;
+        const newQuatity = data.stock + q;
+        const response = await updateItem( id, { stock: newQuatity } );
+        console.log( "response: ".brightYellow, response );
+        message += ( response[ 0 ] > 0 ) ? `Item ${ id } succesfully updated. ` : `Could not update item ${ id }. `;
+    }
+
+    return message;
+}
+
+
 
 module.exports = {
     createItem,
     getAllItems,
     getItemById,
     updateItem,
-    deleteItem
+    deleteItem,
+    buySell
 }

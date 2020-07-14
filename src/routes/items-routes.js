@@ -6,7 +6,7 @@ const { users } = require( '../config/config' );
 const _ = require( 'underscore' );
 const colors = require( 'colors' );
 const { tokenVerify } = require( '../middlewares/authentication' );
-const { getAllItems, getItemById, createItem, updateItem, deleteItem } = require( '../controllers/items-controllers' );
+const { getAllItems, getItemById, createItem, updateItem, deleteItem, buySell } = require( '../controllers/items-controllers' );
 
 
 // ?================================================
@@ -160,6 +160,22 @@ app.delete( '/items/deleteItem/:id', tokenVerify, async ( req, res ) => {
 });
 
 
+
+// ?================================================
+// ?                 Buy Sell Items
+// ?================================================
+app.put('/items/buySell', tokenVerify, async ( req, res ) => {
+
+    const data = req.body;
+
+    message = await buySell( data )
+
+    res.status( 200 ).json({
+        ok:true,
+        message: await buySell( data )
+    });
+
+});
 
 
 module.exports = app;

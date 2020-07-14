@@ -194,7 +194,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n            \"name\": \"Productito\",\r\n            \"description\": \"Desde el createItem\",\r\n            \"value\": \"1000\",\r\n            \"currency\": \"USD\"\r\n\r\n}"
+							"raw": "{\r\n            \"name\": \"Productito\",\r\n            \"description\": \"Desde el createItem\",\r\n            \"sellPrice\": 1000,\r\n            \"currency\": \"USD\",\r\n            \r\n\r\n            \"stock\": 20,\r\n            \"costPrice\": 800\r\n\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/items/createItem",
@@ -241,7 +241,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"value\": 200\r\n}"
+							"raw": "{\r\n    \"sellPrice\": 200\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/items/updateItem/3",
@@ -292,7 +292,7 @@
 							"raw": "{\r\n    \"email\": \"consugus@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:3000/items/deleteItem/4",
+							"raw": "http://localhost:3000/items/deleteItem/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -301,7 +301,7 @@
 							"path": [
 								"items",
 								"deleteItem",
-								"4"
+								"8"
 							]
 						}
 					},
@@ -345,6 +345,41 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST - buy new Items, the stocks increases",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"idItem\": 3,\r\n        \"quantity\": 1\r\n    },\r\n        {\r\n        \"idItem\": 5,\r\n        \"quantity\": 2 \r\n    },\r\n        {\r\n        \"idItem\": 6,\r\n        \"quantity\": 5\r\n    }\r\n]"
+				},
+				"url": {
+					"raw": "http://localhost:3000/items/buyItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items",
+						"buyItems"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -73,7 +73,7 @@ app.get( '/items/getItemById/:id', tokenVerify, async ( req, res ) => {
 // ?                 Create item
 // ?================================================
 app.post( '/items/createItem', tokenVerify, async ( req, res ) => {
-    const data = itemsToUpdate;
+    const data = req.body;
     let resp;
 
     try {
@@ -160,6 +160,31 @@ app.delete( '/items/deleteItem/:id', tokenVerify, async ( req, res ) => {
 });
 
 
+
+
+// ?================================================
+// ?         Buy Items (increases stock)
+// ?================================================
+app.put( '/items/buyItems', tokenVerify, async ( req, res ) => {
+
+    const itemsToUpdate = req.body;
+    console.log( "itemsToUpdate: ", itemsToUpdate );
+
+    const len = itemsToUpdate.length
+    for( let i = 0 ; i < len ; i++ ){
+        let id = itemsToUpdate[ i ].idItem;
+        let q = itemsToUpdate[ i ].quantity;
+        let data = { stock: null };
+        // data = await 
+    }
+
+
+    res.status( 200 ).json({
+        ok: true,
+        message: 'Everything is working fine'
+    });
+
+});
 
 
 module.exports = app;
